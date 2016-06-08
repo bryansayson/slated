@@ -16,11 +16,11 @@
     <body ng-app="slated-search">
         <div class = "container">
             <div class = "row">
-                <div class="search-box col-lg-6 col-md-offset-3" ng-controller="searchController">
+                <div class="search-box col-lg-6 col-md-offset-2" ng-controller="searchController">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="search for films here..." ng-model="query" ng-keyup="search()">
                     </div>
-                    <div ng-repeat="result in results">
+                    <div class="results col-lg-6 col-md-offset-5" ng-repeat="result in results">
                         <div ng-bind-html="renderHtml(result.image_code)"> </div>
                         <div ng-bind-html="renderHtml(result.link_code)"> </div>
                     </div>
