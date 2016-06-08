@@ -26,10 +26,9 @@
             <input type="text" class="form-control" placeholder="search for films here..." ng-model="query" ng-change="search()">
         </div>
         <div ng-repeat="result in results">
-            <div class="result-container">
-                {{result.image_code}}
-                {{result.link_code}}
-            </div>
+            <div ng-bind-html="renderHtml(result.image_code)"> </div>
+            <div ng-bind-html="renderHtml(result.link_code)"> </div>
+        </div>
         </div>
     </div>
 </body>

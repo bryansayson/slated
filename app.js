@@ -1,6 +1,6 @@
 angular.module('slated-search', [])
 
-  .controller('searchController', ['$scope', function($scope) {
+  .controller('searchController', ['$scope', '$sce', function($scope, $sce) {
 
       $scope.search = function() {
           console.log("searching");
@@ -37,5 +37,12 @@ angular.module('slated-search', [])
           }).fail(function(error){
               console.log(error.statusText);
           });
+
+          $scope.renderHtml = function(htmlCode) {
+              console.log("rendering");
+              console.log(htmlCode);
+              return $sce.trustAsHtml(htmlCode);
+          };
+
       }
   }]);
