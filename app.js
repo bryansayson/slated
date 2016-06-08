@@ -2,8 +2,6 @@ angular.module('slated-search', [])
 
   .controller('searchController', ['$scope', '$sce', function($scope, $sce) {
 
-      $scope.query="";
-
       $scope.search = function() {
           // function that constructs search query
           var constructQuery = function(query) {
@@ -20,7 +18,7 @@ angular.module('slated-search', [])
                           }
                       }
                 return url;
-              }
+            }
 
           $scope.querystring = constructQuery($scope.query);
 
@@ -42,8 +40,7 @@ angular.module('slated-search', [])
 
           //sanitize
           $scope.renderHtml = function(htmlCode) {
-
-              return $sce.trustAsHtml(htmlCode);
+                return $sce.trustAsHtml(htmlCode);
           };
 
       }

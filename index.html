@@ -23,7 +23,7 @@
 <body ng-app="slated-search">
     <div class="search-box col-lg-4" ng-controller="searchController">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="search for films here..."  ng-model="query" ng-keydown="search()">
+            <input type="text" class="form-control" placeholder="search for films here..." ng-model="query" ng-keyup="search()">
         </div>
         <div ng-repeat="result in results">
             <div ng-bind-html="renderHtml(result.image_code)"> </div>
