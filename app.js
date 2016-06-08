@@ -2,10 +2,12 @@ angular.module('slated-search', [])
 
   .controller('searchController', ['$scope', '$sce', function($scope, $sce) {
 
+      $scope.query="";
+
       $scope.search = function() {
-          console.log("searching");
           // function that constructs search query
           var constructQuery = function(query) {
+              console.log("searching for " + query);
               var url = "https://www.slated.com/films/autocomplete/profiles/?term=",
                   terms = query.split(" "),
                   initialized = false;
@@ -20,12 +22,12 @@ angular.module('slated-search', [])
                 return url;
               }
 
-          var querystring = constructQuery($scope.query);
+          $scope.querystring = constructQuery($scope.query);
 
           //CORS get request
           $.ajax({
               type: 'GET',
-              url: querystring,
+              url: $scope.querystring,
               data: {
                   field: 'value'
               },
@@ -33,14 +35,14 @@ angular.module('slated-search', [])
               crossDomain: true,
           }).done(function(response){
               $scope.results = response;
-              console.log(response);
+              console.log("results object changed");
           }).fail(function(error){
-              console.log(error.statusText);
+              console.log(error);
           });
 
+          //sanitize
           $scope.renderHtml = function(htmlCode) {
-              console.log("rendering");
-              console.log(htmlCode);
+
               return $sce.trustAsHtml(htmlCode);
           };
 
