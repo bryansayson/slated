@@ -2,10 +2,12 @@ angular.module('slated-search', [])
 
   .controller('searchController', ['$scope', '$sce', function($scope, $sce) {
 
+      $scope.results = [];
+
       $scope.search = function() {
           // function that constructs search query
           var constructQuery = function(query) {
-              console.log("searching for " + query);
+              console.log("query being constructed for " + query);
               var url = "https://www.slated.com/films/autocomplete/profiles/?term=",
                   terms = query.split(" "),
                   initialized = false;
@@ -32,14 +34,15 @@ angular.module('slated-search', [])
               dataType: 'jsonp',
               crossDomain: true,
           }).done(function(response){
+              console.log("GET success");
               $scope.results = response;
-              console.log("results object changed");
           }).fail(function(error){
               console.log(error);
           });
 
           //sanitize
           $scope.renderHtml = function(htmlCode) {
+                console.log("sanitizing");
                 return $sce.trustAsHtml(htmlCode);
           };
 
